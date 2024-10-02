@@ -1,65 +1,48 @@
 "use client";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import axiosInstance from "@/app/lib/axiosInstance";
 import BlogCard from "@/app/components/blogCard";
 import CommunityDropdown from "@/app/components/communityDropdown";
 import CreatePostForm from "@/app/components/createPostForm";
 import { Post } from "@/app/types";
-import { debounce } from "@/app/lib/debounce";
 import styles from "./home.module.css";
 
 export default function Home() {
     const [posts, setPosts] = useState<Post[]>([]);
-    const [selectedCommunity, setSelectedCommunity] = useState<number | null>(null);
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [searchTerm, setSearchTerm] = useState<string>("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [community, setCommunity] = useState<string | null>(null);
 
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
         if (token) {
             setIsLoggedIn(true);
         }
-        // Fetch posts on component mount
-        fetchPosts();
     }, []);
 
-    const fetchPosts = async (search = "", communityId: string | null = null) => {
+    const fetchPosts = async () => {
+        setLoading(true);
+        setError(null);
         try {
-            const params: { search?: string; community?: string } = {};
-            if (search) params.search = search;
-            if (communityId) params.community = communityId;
+            const params: { community?: string } = {};
+            if (community) params.community = community;
 
             const response = await axiosInstance.get<Post[]>("/posts", { params });
             setPosts(response.data);
-        } catch (error) {
-            console.error("Error fetching posts:", error);
+        } catch (err) {
+            console.log(err)
+            setError("Failed to fetch posts");
+        } finally {
+            setLoading(false);
         }
     };
 
-    const debouncedFetchPosts = useCallback(
-        debounce((search: string, communityId: string | null) => {
-            fetchPosts(search, communityId);
-        }, 300),
-        [] // Dependencies array
-    );
-
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-
-        if (value.length > 2) {
-            debouncedFetchPosts(value, selectedCommunity?.toString() ?? null);
-        } else if (value.length === 0) {
-            fetchPosts();
-        }
-    };
-
-    const handleCommunitySelect = (id: number) => {
-        setSelectedCommunity(id);
-        fetchPosts(searchTerm, id.toString());
-    };
+    useEffect(() => {
+        fetchPosts(); // Fetch posts when the component is mounted or community changes
+    }, [community]);
 
     const handleCreateClick = () => {
         if (isLoggedIn) {
@@ -82,8 +65,16 @@ export default function Home() {
             setShowSuccessMessage(false);
         }, 3000);
 
+        // Fetch updated posts after creating a new one
         fetchPosts();
     };
+
+    const handleCommunitySelect = (id: number) => {
+        setCommunity(id.toString());
+    };
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     return (
         <div className={styles.container}>
@@ -93,27 +84,31 @@ export default function Home() {
                         type="text"
                         className={styles.searchBar}
                         placeholder="Search"
-                        value={searchTerm}
-                        onChange={handleSearch}
+                        // defaultValue={search || ""}
+                        // onChange={handleSearch}
                     />
                     <CommunityDropdown
-                        selectedCommunity={selectedCommunity}
-                        onSelectCommunity={handleCommunitySelect}
+                        selectedCommunity={community ? parseInt(community) : null}
+                        onSelectCommunity={handleCommunitySelect} // Handle community selection
                     />
                     <button className={styles.createButton} onClick={handleCreateClick}>Create +</button>
                 </div>
 
                 <div className={styles.blogCards}>
-                    {posts.map(post => (
-                        <BlogCard
-                            key={post.id}
-                            username={post.author.username}
-                            category={post.community.name}
-                            title={post.title}
-                            description={post.content || ""}
-                            commentsCount={post.comments.length}
-                        />
-                    ))}
+                    {posts.length ? (
+                        posts.map(post => (
+                            <BlogCard
+                                key={post.id}
+                                username={post.author.username}
+                                category={post.community.name}
+                                title={post.title}
+                                description={post.content || ""}
+                                commentsCount={post.comments.length}
+                            />
+                        ))
+                    ) : (
+                        <p>No posts found</p>
+                    )}
                 </div>
 
                 {showCreateForm && (
