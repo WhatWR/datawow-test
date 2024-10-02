@@ -11,6 +11,7 @@ interface BlogCardProps {
     title: string;
     description: string;
     commentsCount: number;
+    onClick: () => void;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
@@ -18,10 +19,10 @@ const BlogCard: React.FC<BlogCardProps> = ({
        category,
        title,
        description,
-       commentsCount,
+       commentsCount, onClick
    }) => {
     return (
-        <div className={styles.cardContainer}>
+        <div className={styles.cardContainer} onClick={onClick}>
             {/* Header Section */}
             <div className={styles.header}>
                 <Image src={Avatar} alt={`${username}'s Avatar`} className={styles.avatar} width={30} height={30}/>

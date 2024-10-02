@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import axiosInstance from "@/app/lib/axiosInstance";
 import BlogCard from "@/app/components/blogCard";
 import CommunityDropdown from "@/app/components/communityDropdown";
@@ -8,6 +9,7 @@ import { Post } from "@/app/types";
 import styles from "./home.module.css";
 
 export default function Home() {
+    const router = useRouter();
     const [posts, setPosts] = useState<Post[]>([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -73,6 +75,11 @@ export default function Home() {
         setCommunity(id.toString());
     };
 
+    const navigateToPost = (id: number) => {
+        router.push(`/post/${id}`);
+    };
+
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
@@ -104,6 +111,7 @@ export default function Home() {
                                 title={post.title}
                                 description={post.content || ""}
                                 commentsCount={post.comments.length}
+                                onClick={() => navigateToPost(post.id)}
                             />
                         ))
                     ) : (
