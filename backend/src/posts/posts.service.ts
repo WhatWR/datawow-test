@@ -20,7 +20,7 @@ export class PostsService {
       include: {
         author: true,
         community: true,
-        comment: true,
+        comments: true,
       },
     });
   }
@@ -42,7 +42,7 @@ export class PostsService {
       include: {
         author: true,
         community: true,
-        comment: true,
+        comments: true,
       },
     });
   }

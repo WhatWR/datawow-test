@@ -24,14 +24,14 @@ model Post {
   authorId    Int
   community   Community @relation(fields: [communityId], references: [id])
   communityId Int
-  comment     Comment[]
+  comments    Comment[]
 }
 
 model User {
   id       Int       @id @default(autoincrement())
   username String    @unique
   posts    Post[]
-  comment  Comment[]
+  comments Comment[]
 }
 
 model Community {

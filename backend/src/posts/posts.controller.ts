@@ -143,7 +143,6 @@ export class PostsController {
     }
   }
 
-  //BUG Community
   @Get()
   @ApiQuery({ name: 'search', required: false })
   @ApiQuery({ name: 'community', required: false })
