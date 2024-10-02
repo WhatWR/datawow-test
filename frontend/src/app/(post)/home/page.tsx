@@ -43,7 +43,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        fetchPosts(); // Fetch posts when the component is mounted or community changes
+        fetchPosts();
     }, [community]);
 
     const handleCreateClick = () => {
@@ -67,7 +67,6 @@ export default function Home() {
             setShowSuccessMessage(false);
         }, 3000);
 
-        // Fetch updated posts after creating a new one
         fetchPosts();
     };
 

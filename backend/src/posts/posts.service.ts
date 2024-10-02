@@ -20,7 +20,11 @@ export class PostsService {
       include: {
         author: true,
         community: true,
-        comments: true,
+        comments: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
   }

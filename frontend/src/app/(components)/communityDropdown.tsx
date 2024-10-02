@@ -22,7 +22,6 @@ const CommunityDropdown: React.FC<CommunityDropdownProps> = ({
     const [communities, setCommunities] = useState<Community[]>([]);
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
-    // Mock the fetch function for demonstration
     useEffect(() => {
         const mockCommunities: Community[] = [
             { id: 1, name: 'History' },
@@ -35,10 +34,9 @@ const CommunityDropdown: React.FC<CommunityDropdownProps> = ({
         ];
         setCommunities(mockCommunities);
 
-        // Uncomment this to fetch from backend
         // const fetchCommunities = async () => {
         //   try {
-        //     const response = await axios.get('/api/communities'); // Replace with your API endpoint
+        //     const response = await axios.get('/api/communities'); //
         //     setCommunities(response.data);
         //   } catch (error) {
         //     console.error('Error fetching communities:', error);
@@ -53,7 +51,7 @@ const CommunityDropdown: React.FC<CommunityDropdownProps> = ({
     };
 
     const handleCommunitySelect = (community: Community): void => {
-        onSelectCommunity(community.id); // Call the parent function with the selected community ID
+        onSelectCommunity(community.id);
         setIsDropdownOpen(false);
     };
 
@@ -83,7 +81,7 @@ const CommunityDropdown: React.FC<CommunityDropdownProps> = ({
                                 <Image
                                     src={Correct}
                                     alt="selected"
-                                    className={styles.correctIcon} // Styling for correct image
+                                    className={styles.correctIcon}
                                 />
                             )}
                         </li>

@@ -1,0 +1,159 @@
+.container {
+    display: flex;
+    height: 100vh;
+    flex: 1;
+    flex-direction: column;
+    padding: 36px 0 0 140px;
+    background-color: var(--white);
+}
+.backButton {
+    margin-bottom: 40px;
+}
+
+.postHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 10px;
+}
+
+.profilePic {
+    border-radius: 50%;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.timeAgo {
+    font-size: 12px;
+    color: gray;
+}
+
+.postTitle {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.postDescription {
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+.footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.commentsCount {
+    font-size: 12px;
+    color: var(--gray300);
+    margin-left: 5px;
+}
+
+.commentIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.addCommentButton {
+    padding: 10px 16px;
+    background-color: var(--green300);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* post.module.css */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addCommentButton {
+    background-color: var(--green500);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.addCommentButton:hover {
+    background-color: var(--green300);
+}
+
+.successMessage {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeOut 3s forwards;
+}
+
+/* Fade out animation */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/*.commentsSection {*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.comment {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*.commentHeader {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    margin-bottom: 8px;*/
+/*}*/
+
+/*.commentUsername {*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.commentDate {*/
+/*    font-size: 12px;*/
+/*    color: gray;*/
+/*}*/
+
+/*.commentContent {*/
+/*    margin-top: 8px;*/
+/*    font-size: 14px;*/
+/*}*/

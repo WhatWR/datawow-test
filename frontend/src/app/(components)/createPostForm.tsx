@@ -12,7 +12,7 @@ interface CreatePostFormProps {
 const CreatePostForm: React.FC<CreatePostFormProps> = ({ onPost, onCancel }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [communityId, setCommunityId] = useState<number | null>(null); // Manage communityId
+    const [communityId, setCommunityId] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     const handlePost = async () => {
@@ -30,11 +30,9 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onPost, onCancel }) => 
                     setContent('');
                     setCommunityId(null);
                 } else {
-                    // Handle unexpected status codes
                     setError('Unexpected error occurred. Please try again.');
                 }
             } catch (err) {
-                // Handle errors during the POST request
                 setError('Failed to create the post. Please try again.');
                 console.error(err);
             }

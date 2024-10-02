@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Avatar from '@/app/(images)/avatar.png';
 import Comment from '@/app/(images)/comment.png'
 
-// Define the type for the BlogCard props
 interface BlogCardProps {
     username: string;
     category: string;

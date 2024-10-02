@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
                 setIsLoggedIn(true);
             } catch (error) {
                 console.log(error);
-                setIsLoggedIn(false); // Handle error (e.g., user not logged in)
+                setIsLoggedIn(false);
             }
         };
 
