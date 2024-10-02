@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from '@/app/components/styles/sideBar.module.css';
+import styles from '@/app/(components)/styles/sideBar.module.css';
 import HomeIcon from '@/app/(images)/home.png';
 import OurBlogIcon from '@/app/(images)/our-blog.png';
 

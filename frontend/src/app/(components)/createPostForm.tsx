@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import CommunityDropdown from './communityDropdown';
-import styles from '@/app/components/styles/createPostForm.module.css';
-import axiosInstance from '@/app/lib/axiosInstance';
+import styles from '@/app/(components)/styles/createPostForm.module.css';
+import axiosInstance from '@/app/(lib)/axiosInstance';
 
 interface CreatePostFormProps {
     onPost: (postData: { title: string; content: string; communityId: number }) => void;

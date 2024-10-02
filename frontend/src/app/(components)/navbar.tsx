@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import axiosInstance from '@/app/lib/axiosInstance';
-import styles from '@/app/components/styles/navbar.module.css';
+import axiosInstance from '@/app/(lib)/axiosInstance';
+import styles from '@/app/(components)/styles/navbar.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import Avatar from '@/app/(images)/avatar.png';

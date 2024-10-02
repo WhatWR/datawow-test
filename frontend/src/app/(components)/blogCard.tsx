@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '@/app/components/styles/blogCard.module.css';
+import styles from '@/app/(components)/styles/blogCard.module.css';
 import Image from 'next/image';
 import Avatar from '@/app/(images)/avatar.png';
 import Comment from '@/app/(images)/comment.png'

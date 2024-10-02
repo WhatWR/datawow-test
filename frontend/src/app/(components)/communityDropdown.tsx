@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import styles from '@/app/components/styles/communityDropdown.module.css';
+import styles from '@/app/(components)/styles/communityDropdown.module.css';
 import Image from 'next/image';
 import DropDownArrow from '@/app/(images)/down-arrow.png'
 import Correct from '@/app/(images)/correct.png';

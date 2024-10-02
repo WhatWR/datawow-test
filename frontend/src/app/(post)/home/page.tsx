@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import axiosInstance from "@/app/lib/axiosInstance";
-import BlogCard from "@/app/components/blogCard";
-import CommunityDropdown from "@/app/components/communityDropdown";
-import CreatePostForm from "@/app/components/createPostForm";
+import axiosInstance from "@/app/(lib)/axiosInstance";
+import BlogCard from "@/app/(components)/blogCard";
+import CommunityDropdown from "@/app/(components)/communityDropdown";
+import CreatePostForm from "@/app/(components)/createPostForm";
 import { Post } from "@/app/types";
 import styles from "./home.module.css";
 
