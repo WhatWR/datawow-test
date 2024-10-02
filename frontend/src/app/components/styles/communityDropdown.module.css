@@ -1,0 +1,59 @@
+.communityDropdown {
+    position: relative;
+    /*width: 200px;*/
+    /*background-color: var(--text);*/
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    /*border: 1px solid var(--gray300);*/
+    /*border-radius: 8px;*/
+}
+
+.dropdownHeader {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    gap: 5px;
+    padding: 8px 14px;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.dropdownList {
+    position: absolute;
+    width: 320px;
+    background-color: var(--white);
+    border: 1px solid var(--gray300);
+    border-radius: 8px;
+    list-style: none;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.dropdownList li {
+    display: flex;
+    color: #1C1C1C;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.dropdownList li:hover {
+    background-color: var(--green100);
+}
+
+.selected {
+    background-color: var(--green100); /* Highlight the selected item */
+}
+
+.correctIcon {
+    width: 20px; /* Adjust size as per your requirement */
+    height: 20px;
+}
+
+
+
