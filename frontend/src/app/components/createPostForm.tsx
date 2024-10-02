@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from 'react';
-import CommunityDropdown from './communityDropdown'; // Updated dropdown
+import CommunityDropdown from './communityDropdown';
 import styles from '@/app/components/styles/createPostForm.module.css';
-import axiosInstance from '@/app/lib/axiosInstance'; // Make sure you have the axiosInstance properly set up
+import axiosInstance from '@/app/lib/axiosInstance';
 
 interface CreatePostFormProps {
     onPost: (postData: { title: string; content: string; communityId: number }) => void;
@@ -18,7 +18,6 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onPost, onCancel }) => 
     const handlePost = async () => {
         if (title.trim() && communityId !== null) {
             try {
-                // POST request to the /posts endpoint
                 const response = await axiosInstance.post('/posts', {
                     title,
                     content,
@@ -26,7 +25,6 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({ onPost, onCancel }) => 
                 });
 
                 if (response.status === 201) {
-                    // Successfully created the post
                     onPost({ title, content, communityId });
                     setTitle('');
                     setContent('');

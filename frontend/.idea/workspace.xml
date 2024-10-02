@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f93a1a2a-6860-44a8-9969-c724079fc1d0" name="Changes" comment="" />
+    <list default="true" id="f93a1a2a-6860-44a8-9969-c724079fc1d0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../backend/src/posts/comment.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/posts/posts.controller.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/posts/posts.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/posts/posts.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/posts/posts.module.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/posts/posts.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/posts/posts.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/src/posts/posts.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/users/users.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/users/users.service.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,38 +26,38 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "WhatWR"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;WhatWR&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/WhatWR/datawow-test.git",
-    "accountId": "fff21cb1-694b-4c28-9c56-c6a0df954995"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/WhatWR/datawow-test.git&quot;,
+    &quot;accountId&quot;: &quot;fff21cb1-694b-4c28-9c56-c6a0df954995&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2msxi4pa5x7H5y0TgcPblXKoyUB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -61,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1727879208577</updated>
       <workItem from="1727879209688" duration="222000" />
+      <workItem from="1727885152658" duration="600000" />
     </task>
     <servers />
   </component>

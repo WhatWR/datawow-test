@@ -1,22 +1,65 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import axiosInstance from "@/app/lib/axiosInstance";
 import BlogCard from "@/app/components/blogCard";
 import CommunityDropdown from "@/app/components/communityDropdown";
-import styles from "./home.module.css";
 import CreatePostForm from "@/app/components/createPostForm";
+import { Post } from "@/app/types";
+import { debounce } from "@/app/lib/debounce";
+import styles from "./home.module.css";
 
 export default function Home() {
+    const [posts, setPosts] = useState<Post[]>([]);
     const [selectedCommunity, setSelectedCommunity] = useState<number | null>(null);
     const [showCreateForm, setShowCreateForm] = useState(false);
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success pop-up
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
     useEffect(() => {
-        const token = localStorage.getItem('accessToken');
+        const token = localStorage.getItem("accessToken");
         if (token) {
             setIsLoggedIn(true);
         }
+        // Fetch posts on component mount
+        fetchPosts();
     }, []);
+
+    const fetchPosts = async (search = "", communityId: string | null = null) => {
+        try {
+            const params: { search?: string; community?: string } = {};
+            if (search) params.search = search;
+            if (communityId) params.community = communityId;
+
+            const response = await axiosInstance.get<Post[]>("/posts", { params });
+            setPosts(response.data);
+        } catch (error) {
+            console.error("Error fetching posts:", error);
+        }
+    };
+
+    const debouncedFetchPosts = useCallback(
+        debounce((search: string, communityId: string | null) => {
+            fetchPosts(search, communityId);
+        }, 300),
+        [] // Dependencies array
+    );
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setSearchTerm(value);
+
+        if (value.length > 2) {
+            debouncedFetchPosts(value, selectedCommunity?.toString() ?? null);
+        } else if (value.length === 0) {
+            fetchPosts();
+        }
+    };
+
+    const handleCommunitySelect = (id: number) => {
+        setSelectedCommunity(id);
+        fetchPosts(searchTerm, id.toString());
+    };
 
     const handleCreateClick = () => {
         if (isLoggedIn) {
@@ -31,78 +74,54 @@ export default function Home() {
     };
 
     const handlePost = (postData: { title: string; content: string; communityId: number }) => {
-        // Simulate successful post submission
         console.log("Post submitted:", postData);
         setShowCreateForm(false);
-        setShowSuccessMessage(true); // Show success message
+        setShowSuccessMessage(true);
 
-        // Hide success message after 3 seconds
         setTimeout(() => {
             setShowSuccessMessage(false);
         }, 3000);
+
+        fetchPosts();
     };
-
-    // Search
-
-    // fectch post
 
     return (
         <div className={styles.container}>
-
-            {/* Main Content */}
             <div className={styles.content}>
                 <div className={styles.header}>
-                    <input type="text" className={styles.searchBar} placeholder="Search" />
+                    <input
+                        type="text"
+                        className={styles.searchBar}
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
                     <CommunityDropdown
                         selectedCommunity={selectedCommunity}
-                        onSelectCommunity={(id) => setSelectedCommunity(id)}
+                        onSelectCommunity={handleCommunitySelect}
                     />
                     <button className={styles.createButton} onClick={handleCreateClick}>Create +</button>
                 </div>
 
-                {/* Blog Cards */}
                 <div className={styles.blogCards}>
-                    <BlogCard
-                        username="Wittawat"
-                        category="History"
-                        title="The Beginning of the End of the World"
-                        description="The afterlife sitcom The Good Place comes to its culmination, the show’s two protagonists, Eleanor and Chidi, contemplate their future..dfjsdsdkvfkdbmdfbmsobmsfokmbvdfomvdofmvsomvkvdafjbndfobndobidbiodn."
-                        commentsCount={32}
-                    />
-                    <BlogCard
-                        username="Zach"
-                        category="History"
-                        title="The Big Short War"
-                        description="Tall, athletic, handsome with cerulean eyes, he was the kind of hyper-ambitious kid other kids loved to hate..."
-                        commentsCount={4}
-                    />
-                    <BlogCard
-                        username="Nicholas"
-                        category="Exercise"
-                        title="The Mental Health Benefits of Exercise"
-                        description="You already know that exercise is good for your body. But did you know it can also boost your mood, improve your sleep, and help you deal with depression..."
-                        commentsCount={32}
-                    />
-                    <BlogCard
-                        username="Carl"
-                        category="History"
-                        title="What Makes a Man Betray His Country?"
-                        description="The life of Adolf Tolkachev, Soviet dissident and CIA spy. Excerpted from The Billion Dollar Spy..."
-                        commentsCount={10}
-                    />
+                    {posts.map(post => (
+                        <BlogCard
+                            key={post.id}
+                            username={post.author.username}
+                            category={post.community.name}
+                            title={post.title}
+                            description={post.content || ""}
+                            commentsCount={post.comments.length}
+                        />
+                    ))}
                 </div>
 
-                {/* Conditional Rendering of the Create Post Form */}
                 {showCreateForm && (
                     <div className={styles.modalOverlay}>
-                        <CreatePostForm
-                            onPost={handlePost}
-                            onCancel={handleCancel}
-                        />
+                        <CreatePostForm onPost={handlePost} onCancel={handleCancel} />
                     </div>
                 )}
 
-                {/* Success Message Pop-Up */}
                 {showSuccessMessage && (
                     <div className={styles.successMessage}>
                         Post created successfully!
