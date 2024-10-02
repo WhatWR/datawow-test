@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CommunityService } from './community.service';
 import { Community as CommunityModel } from '@prisma/client';
+import { CreateCommunityDto } from './community.dto';
 
 @Controller('community')
 export class CommunityController {
@@ -8,9 +9,9 @@ export class CommunityController {
 
   @Post()
   async createCommunity(
-    @Body() communityData: { name: string },
+    @Body() createCommunityDto: CreateCommunityDto,
   ): Promise<CommunityModel> {
-    return this.communityService.createCommunity(communityData);
+    return this.communityService.createCommunity(createCommunityDto);
   }
 
   @Get()
