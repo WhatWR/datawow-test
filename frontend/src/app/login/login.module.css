@@ -1,0 +1,118 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #243831;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 6;
+    background-color: #243831;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+    background-color: #2B5F44;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 36px 0 0 36px;
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    max-height: 230px;
+}
+
+.board {
+    margin-top: 42px;
+}
+
+.boardTitle {
+    font-family: 'Castoro', serif;
+    color: #fff;
+    font-size: 28px;
+    text-align: center;
+    font-style: italic;
+}
+
+.form {
+    width: 384px;
+    display: flex;
+    flex-direction: column;
+    /*width: 100%;*/
+}
+
+.title {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .logoContainer {
+        order: -1;
+        border-radius: 0 0 36px 36px;
+        width: 100%;
+    }
+
+    .loginContainer {
+
+    }
+
+    .board {
+        margin-top: 28px;
+    }
+
+    .form {
+        padding: 0 16px 0 16px;
+    }
+
+    .logo {
+        max-width: 170px;
+        max-height: 130px;
+    }
+}
