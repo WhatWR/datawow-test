@@ -15,6 +15,7 @@ describe('CommunityController', () => {
           provide: CommunityService,
           useValue: {
             createCommunity: jest.fn(),
+            getAllCommunities: jest.fn(), // Add the missing mock for getAllCommunities
           },
         },
       ],
@@ -47,6 +48,25 @@ describe('CommunityController', () => {
       expect(communityService.createCommunity).toHaveBeenCalledWith(
         communityData,
       );
+    });
+  });
+
+  describe('getAllCommunity', () => {
+    it('should return an array of communities', async () => {
+      const communities: Community[] = [
+        { id: 1, name: 'Community 1' },
+        { id: 2, name: 'Community 2' },
+      ];
+
+      // Mocking the service method
+      jest
+        .spyOn(communityService, 'getAllCommunities')
+        .mockResolvedValue(communities);
+
+      const result = await communityController.getAllCommunity();
+
+      expect(result).toEqual(communities);
+      expect(communityService.getAllCommunities).toHaveBeenCalled();
     });
   });
 });

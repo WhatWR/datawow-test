@@ -16,6 +16,7 @@ describe('CommunityService', () => {
           useValue: {
             community: {
               create: jest.fn(),
+              findMany: jest.fn(),
             },
           },
         },
@@ -48,6 +49,24 @@ describe('CommunityService', () => {
       expect(prismaService.community.create).toHaveBeenCalledWith({
         data: communityData,
       });
+    });
+  });
+
+  describe('getAllCommunities', () => {
+    it('should return an array of communities', async () => {
+      const communities: Community[] = [
+        { id: 1, name: 'Community 1' },
+        { id: 2, name: 'Community 2' },
+      ];
+
+      jest
+        .spyOn(prismaService.community, 'findMany')
+        .mockResolvedValue(communities);
+
+      const result = await communityService.getAllCommunities();
+
+      expect(result).toEqual(communities);
+      expect(prismaService.community.findMany).toHaveBeenCalled();
     });
   });
 });

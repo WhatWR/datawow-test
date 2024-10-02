@@ -12,6 +12,10 @@ export class CommunityService {
     });
   }
 
+  async getAllCommunities(): Promise<Community[]> {
+    return this.prisma.community.findMany();
+  }
+
   // async posts(params: {
   //   where?: Prisma.CommunityWhereInput;
   // }): Promise<Community[]> {
