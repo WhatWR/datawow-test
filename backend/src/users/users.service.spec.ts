@@ -37,8 +37,6 @@ describe('UsersService', () => {
       const createdUser: User = {
         id: 1,
         username: 'testuser',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       };
 
       jest.spyOn(prismaService.user, 'create').mockResolvedValue(createdUser);
@@ -58,8 +56,6 @@ describe('UsersService', () => {
       const user: User = {
         id: 1,
         username: 'testuser',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       };
 
       jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(user);
