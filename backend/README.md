@@ -31,7 +31,11 @@
 ```bash
 $ yarn install
 ```
-
+## Project setup db
+.env = postgresql://root:password@localhost:5432/blog
+```bash
+$ docker-compose up .
+```
 ## Compile and run the project
 
 ```bash
