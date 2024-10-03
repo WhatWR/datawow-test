@@ -116,18 +116,19 @@ export class PostsController {
 
   @Get()
   async getAllPosts(
-    @Param()
-    param: {
-      skip?: number;
-      take?: number;
-      orderBy?: Prisma.PostOrderByWithRelationInput;
-    },
+    @Query('username') username?: string,
+    @Query('skip') skip?: number,
+    @Query('take') take?: number,
   ): Promise<PostModel[]> {
-    const orderBy = param.orderBy || { createdAt: 'desc' };
+    const where: Prisma.PostWhereInput = {
+      ...(username ? { author: { username } } : {}),
+    };
 
     return this.postService.posts({
-      ...param,
-      orderBy,
+      skip,
+      take,
+      where,
+      orderBy: { createdAt: 'desc' }, // Always order by newest first
     });
   }
 

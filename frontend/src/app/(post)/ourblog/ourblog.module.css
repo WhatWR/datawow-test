@@ -1,0 +1,138 @@
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: var(--gray100);
+}
+
+.menu {
+    width: 280px;
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.menuItems {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menuItem {
+    font-size: 18px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.menuIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+
+.menuItem span {
+    color: var(--green500);
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 36px 0 0 140px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.searchBar {
+    flex-grow: 1;
+    padding: 10px 14px;
+    height: 40px;
+    width: 100px;
+    border-radius: 8px;
+    border: 1px solid var(--green100);
+    margin-right: 20px;
+}
+
+.createButton {
+    padding: 10px 26px;
+    background-color: var(--success);
+    font-size: 16px;
+    line-height: 20px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.createButton:hover {
+    background-color: var(--green500);
+}
+
+.blogCards {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px 12px 0 0;
+    gap: 1px;
+    overflow-y: auto;
+
+}
+
+.blogCards > div:first-child {
+    border-radius: 12px 12px 0 0;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.createButton {
+    background-color: var(--green500);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.createButton:hover {
+    background-color: var(--green300);
+}
+
+.successMessage {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeOut 3s forwards;
+}
+
+/* Fade out animation */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

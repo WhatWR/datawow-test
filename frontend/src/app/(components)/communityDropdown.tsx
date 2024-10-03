@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/app/(components)/styles/communityDropdown.module.css';
 import Image from 'next/image';
-import DropDownArrow from '@/app/(images)/down-arrow.png'
+import DropDownArrow from '@/app/(images)/down-arrow.png';
 import Correct from '@/app/(images)/correct.png';
+import axiosInstance from '@/app/(lib)/axiosInstance'; // Import axios instance
 
 interface Community {
     id: number;
@@ -16,34 +17,24 @@ interface CommunityDropdownProps {
 }
 
 const CommunityDropdown: React.FC<CommunityDropdownProps> = ({
-         selectedCommunity,
-         onSelectCommunity,
-     }) => {
+                                                                 selectedCommunity,
+                                                                 onSelectCommunity,
+                                                             }) => {
     const [communities, setCommunities] = useState<Community[]>([]);
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
     useEffect(() => {
-        const mockCommunities: Community[] = [
-            { id: 1, name: 'History' },
-            { id: 2, name: 'Food' },
-            { id: 3, name: 'Pets' },
-            { id: 4, name: 'Health' },
-            { id: 5, name: 'Fashion' },
-            { id: 6, name: 'Exercise' },
-            { id: 7, name: 'Others' },
-        ];
-        setCommunities(mockCommunities);
+        // Fetch communities from the API
+        const fetchCommunities = async () => {
+            try {
+                const response = await axiosInstance.get<Community[]>('/community'); // API endpoint for communities
+                setCommunities(response.data); // Set the fetched communities
+            } catch (error) {
+                console.error('Error fetching communities:', error);
+            }
+        };
 
-        // const fetchCommunities = async () => {
-        //   try {
-        //     const response = await axios.get('/api/communities'); //
-        //     setCommunities(response.data);
-        //   } catch (error) {
-        //     console.error('Error fetching communities:', error);
-        //   }
-        // };
-
-        // fetchCommunities();
+        fetchCommunities(); // Call the function to fetch data
     }, []);
 
     const toggleDropdown = (): void => {

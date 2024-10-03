@@ -25,6 +25,7 @@ const LoginPage: React.FC = () => {
 
             if (response.status === 200) {
                 localStorage.setItem('accessToken', response.data.access_token);
+
                 localStorage.setItem('username', response.data.username);
                 router.push('/');
             }

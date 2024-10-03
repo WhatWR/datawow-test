@@ -77,3 +77,15 @@
     width: 16px;
     height: 16px;
 }
+
+.ownerActions {
+    display: flex;
+    gap: 10px;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+

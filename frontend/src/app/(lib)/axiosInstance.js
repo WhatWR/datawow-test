@@ -29,6 +29,7 @@ axiosInstance.interceptors.response.use(
             // Handle unauthorized access (e.g., token expired, invalid token)
             console.error('Unauthorized, redirecting to login...');
             localStorage.removeItem('accessToken'); // Optionally remove the token
+            localStorage.removeItem('username')
             // window.location.href = '/login'; // Redirect to log in
         }
         return Promise.reject(error); // Reject any other errors

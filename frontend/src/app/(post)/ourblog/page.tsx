@@ -7,11 +7,11 @@ import BlogCard from "@/app/(components)/blogCard";
 import CommunityDropdown from "@/app/(components)/communityDropdown";
 import CreatePostForm from "@/app/(components)/createPostForm";
 import ConfirmDelete from "@/app/(components)/confirmDelete";
-import EditPostModal from "@/app/(components)/editPost";
-import styles from "./home.module.css";
+// import EditPostModal from "@/app/(components)/editPost";
+import styles from "./ourblog.module.css";
 import { Post } from "@/app/types";
 
-export default function Home() {
+export default function Ourblog() {
     const router = useRouter();
     const [posts, setPosts] = useState<Post[]>([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
@@ -19,7 +19,7 @@ export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [community, setCommunity] = useState<string | "">("");
+    const [community, setCommunity] = useState<string | null>(null);
     const [postToDelete, setPostToDelete] = useState<number | null>(null); // Track which post to delete
     const [postToEdit, setPostToEdit] = useState<Post | null>(null); // Track which post to edit
     const loggedInUsername = localStorage.getItem('username');
@@ -31,29 +31,26 @@ export default function Home() {
         }
     }, []);
 
-    const fetchPosts = async () => {
-        setLoading(true);
-        setError(null);
+    const fetchMyPosts = async () => {
         try {
+            const username = localStorage.getItem("username");
             const response = await axiosInstance.get<Post[]>("/posts", {
                 params: {
-                    community: community,
+                    username: username,
                 },
             });
             setPosts(response.data);
-
         } catch (err) {
-            console.log(err)
-            setError("Failed to fetch posts");
+            console.log(err);
+            setError("Failed to fetch your posts.");
         } finally {
             setLoading(false);
         }
     };
 
-
     useEffect(() => {
-        fetchPosts();
-    }, [community]);
+        fetchMyPosts();
+    }, []);
 
     const handleCreateClick = () => {
         if (isLoggedIn) {
@@ -76,7 +73,7 @@ export default function Home() {
             setShowSuccessMessage(false);
         }, 3000);
 
-        fetchPosts();
+        fetchMyPosts();
     };
 
     const navigateToPost = (id: number) => {
@@ -107,24 +104,25 @@ export default function Home() {
         setPostToDelete(null); // Close the confirmation modal without deleting
     };
 
-    const saveEditedPost = async (updatedPost: { title: string; content: string }) => {
-        if (postToEdit) {
-            try {
-                const response = await axiosInstance.patch(`/posts/${postToEdit.id}`, updatedPost);
-                setPosts(posts.map(post => (post.id === postToEdit.id ? response.data : post))); // Update the post in the list
-                setPostToEdit(null); // Close the edit modal
-            } catch (error) {
-                console.log("Failed to edit post:", error);
-            }
-        }
-    };
-
-    const cancelEdit = () => {
-        setPostToEdit(null); // Close the edit modal without saving
-    };
+    // const saveEditedPost = async (updatedPost: { title: string; content: string }) => {
+    //     if (postToEdit) {
+    //         try {
+    //             const response = await axiosInstance.patch(`/posts/${postToEdit.id}`, updatedPost);
+    //             setPosts(posts.map(post => (post.id === postToEdit.id ? response.data : post))); // Update the post in the list
+    //             setPostToEdit(null); // Close the edit modal
+    //         } catch (error) {
+    //             console.log("Failed to edit post:", error);
+    //         }
+    //     }
+    // };
+    //
+    // const cancelEdit = () => {
+    //     setPostToEdit(null); // Close the edit modal without saving
+    // };
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
+    console.log(postToEdit)
 
     return (
         <div className={styles.container}>
@@ -181,15 +179,12 @@ export default function Home() {
                 )}
 
                 {/* Edit Post Modal */}
-                {postToEdit && (
-                    <EditPostModal
-                        initialTitle={postToEdit.title}
-                        initialContent={postToEdit.content || ""}
-                        category={postToEdit.community.name}
-                        onSave={saveEditedPost}
-                        onCancel={cancelEdit}
-                    />
-                )}
+                {/*{postToEdit && (*/}
+                {/*    <EditPostModal*/}
+                {/*        initialPostData={{ title: postToEdit.title, content: (postToEdit.content || "") , communityId: 1, id: postToEdit.id }}*/}
+                {/*        onCancel={cancelEdit}*/}
+                {/*    />*/}
+                {/*)}*/}
             </div>
         </div>
     );

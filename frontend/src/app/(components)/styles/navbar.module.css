@@ -54,3 +54,25 @@
 .avatar {
     border-radius: 50%;
 }
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .userSection {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .signInButton {
+        width: 100%;
+        padding: 10px 0;
+    }
+}
