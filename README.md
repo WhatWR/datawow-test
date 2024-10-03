@@ -66,6 +66,8 @@ for easy to testing api
 
 for ORM
 
-The backend for this project is built using NestJS. You can find the backend repository [here]([https://google.com/](https://github.com/WhatWR/datawow-test/tree/main/backend))
+## Backend
+The backend for this project is built using NestJS. You can find the backend repository [here](https://github.com/WhatWR/datawow-test/tree/main/backend).
 
-The frontend for this project is built using Next.js. You can find the frontend repository [here]([https://google.com/](https://github.com/WhatWR/datawow-test/tree/main/frontend)).
+## Frontend
+The frontend for this project is built using Next.js. You can find the frontend repository [here](https://github.com/WhatWR/datawow-test/tree/main/frontend).
