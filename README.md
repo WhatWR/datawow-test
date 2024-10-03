@@ -41,3 +41,31 @@
 - **Community**:
     - Represents the community entity under which posts can be organized.
     - Each community can have multiple posts associated with it.
+
+## Dependency
+
+"@nestjs/jwt": "^10.2.0",
+for using jwt for authentication
+"@nestjs/swagger": "^7.4.2",
+
+for easy to testing api
+"@prisma/client": "^5.20.0",
+"prisma": "^5.20.0",
+
+for ORM
+
+## Dependency
+
+"@nestjs/jwt": "^10.2.0",
+for using jwt for authentication
+"@nestjs/swagger": "^7.4.2",
+
+for easy to testing api
+"@prisma/client": "^5.20.0",
+"prisma": "^5.20.0",
+
+for ORM
+
+The backend for this project is built using NestJS. You can find the backend repository [here]([https://google.com/](https://github.com/WhatWR/datawow-test/tree/main/backend))
+
+The frontend for this project is built using Next.js. You can find the frontend repository [here]([https://google.com/](https://github.com/WhatWR/datawow-test/tree/main/frontend)).
